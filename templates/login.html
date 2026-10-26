@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+<section class="auth-layout">
+  <div class="auth-aside"><span class="eyebrow">WELCOME BACK</span><h1>Your next chapter starts here.</h1><p>Pick up where you left off and keep improving your resume.</p><div class="auth-quote">“A good resume makes your strengths easy to see.”</div></div>
+  <div class="form-card"><h2>Log in</h2><p class="muted">Enter your account details to continue.</p>
+    <form method="post" class="stack-form">
+      <label>Email address<input type="email" name="email" autocomplete="email" required></label>
+      <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+      <button class="btn btn-primary full" type="submit">Log in <span>→</span></button>
+    </form><p class="form-foot">New to ResumeIQ? <a href="{{ url_for('register') }}">Create an account</a></p>
+  </div>
+</section>
+{% endblock %}

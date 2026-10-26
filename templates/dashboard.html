@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="welcome-row"><div><span class="eyebrow">YOUR WORKSPACE</span><h1>Welcome back, {{ current_user.name.split(' ')[0] }}.</h1><p class="muted">Let's make your next application your strongest one yet.</p></div><a class="btn btn-primary" href="{{ url_for('builder') }}">＋ Build a resume</a></section>
+<section class="stats-grid">
+  <div class="stat-card"><span class="stat-label">Resume reviews</span><strong>{{ total }}</strong><span class="stat-foot">Saved analyses</span></div>
+  <div class="stat-card accent-stat"><span class="stat-label">Your next step</span><strong class="stat-word">Improve</strong><span class="stat-foot">Tailor your resume to each role</span></div>
+  <div class="stat-card"><span class="stat-label">Workspace</span><strong class="stat-word">Ready</strong><span class="stat-foot">Builder and analyzer available</span></div>
+</section>
+<section class="dashboard-actions">
+  <a class="action-card" href="{{ url_for('builder') }}"><span class="action-icon purple">▤</span><div><h3>Create a resume</h3><p>Enter your details and download a PDF.</p></div><span class="action-arrow">→</span></a>
+  <a class="action-card" href="{{ url_for('analyzer') }}"><span class="action-icon green">✧</span><div><h3>Analyze a resume</h3><p>Upload a PDF for AI-powered feedback.</p></div><span class="action-arrow">→</span></a>
+</section>
+<section class="content-panel"><div class="panel-heading"><div><h2>Recent activity</h2><p class="muted">Your latest resume work</p></div><a class="text-link" href="{{ url_for('history') }}">View all →</a></div>
+{% if recent %}<div class="table-wrap"><table><thead><tr><th>Resume / analysis</th><th>Score</th><th>Date</th><th></th></tr></thead><tbody>{% for item in recent %}<tr><td><a class="table-title" href="{{ url_for('result', analysis_id=item.id) }}">{{ item.title }}</a></td><td>{% if item.score is not none %}<span class="score-pill">{{ item.score }}/100</span>{% else %}<span class="muted">Builder</span>{% endif %}</td><td>{{ item.created_at.strftime('%d %b %Y') if item.created_at else '' }}</td><td><a class="text-link" href="{{ url_for('result', analysis_id=item.id) }}">Open</a></td></tr>{% endfor %}</tbody></table></div>
+{% else %}<div class="empty-state"><div class="empty-icon">✧</div><h3>Your workspace starts here</h3><p>Create your first resume or upload one for feedback.</p><a class="btn btn-primary" href="{{ url_for('analyzer') }}">Analyze a resume</a></div>{% endif %}
+</section>
+{% endblock %}

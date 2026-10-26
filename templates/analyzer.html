@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Resume analyzer{% endblock %}
+{% block content %}
+<section class="page-heading"><span class="eyebrow">AI RESUME REVIEW</span><h1>Make your resume work harder.</h1><p>Upload a text-based PDF to receive feedback on clarity, skills, keywords and formatting.</p></section>
+<section class="analyzer-layout">
+  <form method="post" enctype="multipart/form-data" class="content-panel analyzer-form">
+    <div class="panel-heading"><div><h2>Upload your resume</h2><p class="muted">PDF only · 5 MB maximum</p></div><span class="step-number">01</span></div>
+    <label class="upload-zone" for="resume-file"><span class="upload-icon">↑</span><strong id="file-label">Choose a PDF file</strong><span>Click to browse your computer</span><input id="resume-file" type="file" name="resume" accept=".pdf,application/pdf" required></label>
+    <div class="panel-heading job-heading"><div><h2>Target job description</h2><p class="muted">Optional, but helpful for keyword matching</p></div><span class="step-number">02</span></div>
+    <label class="block-label">Paste the job description<textarea name="job_description" rows="8" placeholder="Paste the role requirements and responsibilities here..."></textarea></label>
+    <button class="btn btn-primary full" type="submit">Analyze my resume <span>→</span></button>
+    <p class="privacy-note">Your uploaded PDF is processed for analysis and removed from the upload folder afterward. Extracted text and feedback are saved to your account history.</p>
+  </form>
+  <aside class="analyzer-aside"><div class="aside-illustration">✧</div><h2>What you'll receive</h2><ul class="check-list"><li><span>✓</span><div><b>Resume score</b><p>A high-level, advisory score out of 100.</p></div></li><li><span>✓</span><div><b>Strengths & improvements</b><p>Specific points to keep and areas to refine.</p></div></li><li><span>✓</span><div><b>Keyword comparison</b><p>Relevant terms found and possible gaps.</p></div></li><li><span>✓</span><div><b>Formatting suggestions</b><p>Practical ways to improve readability.</p></div></li></ul><div class="small-note">AI feedback can be imperfect. Review suggestions and keep all resume claims accurate.</div></aside>
+</section>
+{% endblock %}

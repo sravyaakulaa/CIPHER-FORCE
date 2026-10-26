@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Create a stronger resume{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="pulse"></span> YOUR CAREER, BETTER PRESENTED</div>
+    <h1>Turn your experience into your <span>next opportunity.</span></h1>
+    <p class="hero-lead">Build a clean, professional resume and get actionable AI feedback to make your skills stand out.</p>
+    <div class="hero-actions">
+      {% if current_user %}
+        <a class="btn btn-primary" href="{{ url_for('dashboard') }}">Open dashboard <span>→</span></a>
+      {% else %}
+        <a class="btn btn-primary" href="{{ url_for('register') }}">Create my resume <span>→</span></a>
+        <a class="btn btn-light" href="{{ url_for('login') }}">I already have an account</a>
+      {% endif %}
+    </div>
+    <div class="hero-proof"><span class="proof-icon">✓</span> Resume builder <span class="proof-icon">✓</span> ATS-style review <span class="proof-icon">✓</span> PDF export</div>
+  </div>
+  <div class="hero-visual">
+    <div class="floating-tag tag-top">✦ AI-powered feedback</div>
+    <div class="resume-preview">
+      <div class="preview-head"><div class="avatar">AS</div><div><div class="preview-name">Alex Student</div><div class="preview-role">Computer Science Student</div></div></div>
+      <div class="preview-rule"></div>
+      <div class="preview-section">PROFILE</div><div class="skeleton wide"></div><div class="skeleton"></div>
+      <div class="preview-section">PROJECTS</div><div class="preview-project"><b>Secure Web Application</b><div class="skeleton wide"></div><div class="skeleton short"></div></div>
+      <div class="preview-project"><b>Data Analysis Dashboard</b><div class="skeleton wide"></div><div class="skeleton"></div></div>
+      <div class="preview-section">SKILLS</div><div class="skill-pills"><span>Python</span><span>SQL</span><span>Flask</span><span>Git</span></div>
+    </div>
+    <div class="score-card"><div class="score-ring"><span>86</span></div><div><b>Resume score</b><small>Example score only</small></div><span class="score-arrow">↗</span></div>
+    <div class="floating-tag tag-bottom">✓ Clear, structured, ready to share</div>
+  </div>
+</section>
+<section class="feature-section">
+  <div class="section-heading"><span class="eyebrow">EVERYTHING IN ONE PLACE</span><h2>A smarter way to prepare for your next role.</h2><p>From your first draft to your final download.</p></div>
+  <div class="feature-grid">
+    <article class="feature-card"><div class="feature-icon purple">▤</div><h3>Build your resume</h3><p>Fill in your education, projects, experience and skills. Export a polished PDF.</p></article>
+    <article class="feature-card"><div class="feature-icon green">✧</div><h3>Get AI feedback</h3><p>Receive strengths, improvements, formatting tips and relevant keyword suggestions.</p></article>
+    <article class="feature-card"><div class="feature-icon orange">⌕</div><h3>Match a job</h3><p>Compare your resume with a job description to spot keywords you may have missed.</p></article>
+  </div>
+</section>
+{% endblock %}

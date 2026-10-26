@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Analysis results{% endblock %}
+{% block content %}
+<section class="page-heading result-heading"><div><span class="eyebrow">ANALYSIS COMPLETE</span><h1>Your resume review.</h1><p class="muted">{{ item.title }} · {{ item.created_at.strftime('%d %b %Y, %I:%M %p') if item.created_at else '' }}</p></div><a class="btn btn-light" href="{{ url_for('analyzer') }}">Analyze another</a></section>
+<section class="result-overview content-panel">
+  <div class="result-score"><div class="big-score">{{ result.get('score', item.score if item.score is not none else '—') }}<small>/100</small></div><div class="score-track"><span style="width: {{ result.get('score', item.score if item.score is not none else 0) }}%"></span></div><span class="muted">Advisory resume score</span></div>
+  <div class="result-summary"><span class="eyebrow">EXECUTIVE SUMMARY</span><h2>{{ result.get('summary', 'Resume record saved.') }}</h2><p class="muted">Use this feedback as a guide, not as a guarantee of interview selection.</p></div>
+</section>
+<section class="result-grid">
+  <article class="content-panel result-panel"><div class="result-panel-title"><span class="feature-icon green">✓</span><h2>Strengths</h2></div>{% if result.get('strengths') %}<ul class="feedback-list">{% for item_text in result.get('strengths',[]) %}<li>{{ item_text }}</li>{% endfor %}</ul>{% else %}<p class="muted">No strengths were returned.</p>{% endif %}</article>
+  <article class="content-panel result-panel"><div class="result-panel-title"><span class="feature-icon orange">↗</span><h2>Improvements</h2></div>{% if result.get('improvements') %}<ul class="feedback-list">{% for item_text in result.get('improvements',[]) %}<li>{{ item_text }}</li>{% endfor %}</ul>{% else %}<p class="muted">No improvements were returned.</p>{% endif %}</article>
+  <article class="content-panel result-panel"><div class="result-panel-title"><span class="feature-icon purple">⌕</span><h2>Missing skills / keywords</h2></div>{% if result.get('missing_skills') %}<div class="keyword-pills">{% for item_text in result.get('missing_skills',[]) %}<span>{{ item_text }}</span>{% endfor %}</div>{% else %}<p class="muted">No specific gaps identified, or no job description was provided.</p>{% endif %}</article>
+  <article class="content-panel result-panel"><div class="result-panel-title"><span class="feature-icon blue">#</span><h2>Matched keywords</h2></div>{% if result.get('keyword_matches') %}<div class="keyword-pills matched">{% for item_text in result.get('keyword_matches',[]) %}<span>{{ item_text }}</span>{% endfor %}</div>{% else %}<p class="muted">Add a target job description to make keyword comparison more useful.</p>{% endif %}</article>
+  <article class="content-panel result-panel full-span"><div class="result-panel-title"><span class="feature-icon orange">☷</span><h2>Formatting tips</h2></div><ul class="feedback-list columns-list">{% for item_text in result.get('formatting_tips',[]) %}<li>{{ item_text }}</li>{% endfor %}</ul></article>
+</section>
+<p class="disclaimer">{{ result.get('disclaimer', 'This is an estimate and does not guarantee how an employer’s ATS will rank your resume.') }}</p>
+<div class="bottom-actions"><a class="btn btn-primary" href="{{ url_for('history') }}">View history</a><a class="btn btn-light" href="{{ url_for('dashboard') }}">Back to dashboard</a></div>
+{% endblock %}

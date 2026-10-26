@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Resume builder{% endblock %}
+{% block content %}
+<section class="page-heading"><span class="eyebrow">RESUME STUDIO</span><h1>Build your resume.</h1><p>Fill in what applies to you. Use short, specific bullet points and include real achievements.</p></section>
+<form method="post" class="builder-layout">
+  <div class="builder-form content-panel">
+    <div class="panel-heading"><div><h2>Personal details</h2><p class="muted">How employers can contact you</p></div><span class="step-number">01</span></div>
+    <div class="field-grid">
+      <label>Full name *<input name="name" value="{{ data.get('name','') }}" required placeholder="e.g. Alex Student"></label>
+      <label>Email<input type="email" name="email" value="{{ data.get('email','') }}" placeholder="alex@example.com"></label>
+      <label>Phone<input name="phone" value="{{ data.get('phone','') }}" placeholder="+91 98765 43210"></label>
+      <label>City / location<input name="location" value="{{ data.get('location','') }}" placeholder="Hyderabad, India"></label>
+      <label>LinkedIn URL<input name="linkedin" value="{{ data.get('linkedin','') }}" placeholder="linkedin.com/in/yourname"></label>
+      <label>Portfolio / GitHub<input name="website" value="{{ data.get('website','') }}" placeholder="github.com/yourname"></label>
+    </div>
+    <div class="form-divider"></div>
+    <div class="panel-heading"><div><h2>Professional summary</h2><p class="muted">Two or three sentences about your focus and strengths</p></div><span class="step-number">02</span></div>
+    <label class="block-label">Summary<textarea name="summary" rows="4" placeholder="Computer science student interested in...">{{ data.get('summary','') }}</textarea></label>
+    <div class="form-divider"></div>
+    <div class="panel-heading"><div><h2>Education & experience</h2><p class="muted">Newest first; include dates where possible</p></div><span class="step-number">03</span></div>
+    <label class="block-label">Education<textarea name="education" rows="4" placeholder="B.Tech in Computer Science — College Name&#10;2024–2028 | Relevant coursework: ...">{{ data.get('education','') }}</textarea></label>
+    <label class="block-label">Experience / internships<textarea name="experience" rows="4" placeholder="Role — Organization | Dates&#10;• Describe what you did and the impact.">{{ data.get('experience','') }}</textarea></label>
+    <div class="form-divider"></div>
+    <div class="panel-heading"><div><h2>Projects & skills</h2><p class="muted">Show what you can build and the tools you know</p></div><span class="step-number">04</span></div>
+    <label class="block-label">Projects<textarea name="projects" rows="5" placeholder="AI Resume Builder | Python, Flask, MySQL&#10;• Built ...&#10;• Added ...">{{ data.get('projects','') }}</textarea></label>
+    <label class="block-label">Skills<textarea name="skills" rows="3" placeholder="Python, Flask, MySQL, HTML, CSS, Git, Linux">{{ data.get('skills','') }}</textarea></label>
+    <label class="block-label">Certifications<textarea name="certifications" rows="2" placeholder="Certification name — Issuer, Year">{{ data.get('certifications','') }}</textarea></label>
+    <button class="btn btn-primary full builder-submit" type="submit">Generate and download PDF <span>↓</span></button>
+  </div>
+  <aside class="builder-side"><div class="tip-card"><div class="feature-icon green">✦</div><h3>Make each line count</h3><p>Start bullet points with action verbs such as built, analyzed, automated, designed or improved.</p></div><div class="tip-card"><div class="feature-icon purple">✓</div><h3>Keep it truthful</h3><p>Only include skills, dates and achievements you can confidently discuss in an interview.</p></div><div class="tip-card"><div class="feature-icon orange">PDF</div><h3>Ready to share</h3><p>Your information is formatted into a clean, text-based PDF that is easier for software to parse.</p></div></aside>
+</form>
+{% endblock %}
